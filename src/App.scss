@@ -1,9 +1,8 @@
 // colors
-
+@import "./styles/navbar";
 :root {
     --primary-color: #24292f;
     --secondary-color: #2da44e;
-}
-.App {
-    background-color: var(--primary-color);
+    --border-color: #30363d;
+    --background-color: #0d1117;
 }
