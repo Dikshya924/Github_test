@@ -21,11 +21,13 @@ nav {
         color: whitesmoke;
     }
 }
+
 .card {
     box-shadow: 0 12px 26px rgb(19 18 73 / 10%) !important;
     background-color: var(--primary-color) !important;
     border: 1px solid transparent !important;
     color: white;
+    height: auto;
 }
 .card_body {
     background-color: var(--primary-color);
@@ -42,6 +44,19 @@ footer {
     background-color: var(--primary-color);
     box-shadow: 0 6px 20px 0 rgb(0 0 0 / 2%), 0 4px 8px 0 rgb(0 0 0 / 2%);
 }
-.main_container {
+.main_container,
+.detail_container {
     background-color: var(--background-color);
+    color: white;
+    height: 100%;
+}
+a {
+    color: white !important;
+    text-decoration: none !important;
+    border: none;
+    h4 {
+        &:hover {
+            color: var(--secondary-color);
+        }
+    }
 }

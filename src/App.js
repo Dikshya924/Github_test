@@ -15,7 +15,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="detail" element={<Detailpage />} />
+          <Route path="/:uname/:repo" element={<Detailpage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

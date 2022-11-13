@@ -1,38 +1,27 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import RepoCard from "../common/RepoCard";
+import { setRepo, setUser } from "../../redux/actions/repoActions";
+import AllRepo from "../common/AllRepo";
 
 function Main() {
-  const [repo, setRepo] = useState([]);
-  const [user] = useState("mojombo");
+  const user = useSelector((state) => state.allUser.user);
+  const repo = useSelector((state) => state.allRepos.repos);
+  const dispatch = useDispatch();
+
+  const allUser = async () => {
+    const response = await axios.get(`https://api.github.com/users`);
+    dispatch(setUser(response.data));
+  };
   useEffect(() => {
-    const allRepo = async () => {
-      const response = await axios.get(
-        `https://api.github.com/users/${user}/repos`
-      );
-      setRepo(response.data);
-    };
-    allRepo();
+    allUser();
   }, []);
-  console.log(repo);
+
   return (
     <div className="main_container">
-      <div className="row py-4 mx-auto gy-4 container">
-        {repo.length !== 0
-          ? repo.map((res) => (
-              <div className="col-md-4 col-sm-12">
-                <RepoCard
-                  repo={res.full_name}
-                  author={user}
-                  description={res.description}
-                  fork={res.forks_count}
-                  watch={res.watchers_count}
-                  star={res.stargazers_count}
-                />
-              </div>
-            ))
-          : console.log("no data")}
-      </div>
+      {repo.length !== 0 ? <RepoCard /> : <AllRepo />}
     </div>
   );
 }
